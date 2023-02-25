@@ -72,12 +72,12 @@ def ppg_findpeaks(ppg_cleaned, sampling_rate=1000, method="elgendi", show=False,
     if method in ["elgendi"]:
         peaks = _ppg_findpeaks_elgendi(ppg_cleaned, sampling_rate, show=show, **kwargs)
     elif method in ["msptd", "bishop2018", "bishop"]:
-        peaks, troughs = _ppg_findpeaks_bishop(ppg_cleaned, show=show, **kwargs)
+        peaks, _ = _ppg_findpeaks_bishop(ppg_cleaned, show=show, **kwargs)
     else:
         raise ValueError("`method` not found. Must be one of the following: 'elgendi', 'bishop'.")
 
     # Prepare output.
-    info = {"PPG_Peaks": peaks, "PPG_Trough": troughs}
+    info = {"PPG_Peaks": peaks, "PPG_Trough": _}
 
     return info
 
